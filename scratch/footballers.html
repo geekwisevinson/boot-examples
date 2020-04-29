@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FootBallers</title>
+</head>
+<body>
+<h1>FootBallers</h1>
+
+<script>
+
+  function weekGames() {
+    console.log('ref', 'https://www.nfl.com/scores/2019/REG1');
+    const games = [];
+    document.querySelectorAll('.css-1dbjc4n.r-1awozwy.r-14lw9ot.r-18u37iz.r-1k9zyfm.r-1wtj0ep.r-c8eef1.r-13qz1uu').forEach( game => { children = game.querySelector('div').children;
+      game = {};
+      game[children[0].innerText.split('(')[0].replace(/\s/g,'')] = Number(children[0].innerText.split(')')[1]);
+      game[children[1].innerText.split('(')[0].replace(/\s/g,'')] = Number(children[1].innerText.split(')')[1]);
+      console.log(game);
+      games.push(game);
+    });
+    console.log(JSON.stringify(games));
+  }
+  const conferences = ['AFC', 'NFC'];
+  const teams = ["Arizona Cardinals", "Atlanta Falcons", "Baltimore Ravens", "Buffalo Bills", "Carolina Panthers", "Chicago Bears", "Cincinnati Bengals", "Cleveland Browns", "Dallas Cowboys", "Denver Broncos", "Detroit Lions", "Green Bay Packers", "Houston Texans", "Indianapolis Colts", "Jacksonville Jaguars", "Kansas City Chiefs", "Los Angeles Chargers", "Los Angeles Rams", "Miami Dolphins", "Minnesota Vikings", "New England Patriots", "New Orleans Saints", "New York Giants", "New York Jets", "Oakland Raiders", "Philadelphia Eagles", "Pittsburgh Steelers", "San Francisco 49ers", "Seattle Seahawks", "Tampa Bay Buccaneers", "Tennessee Titans", "Washington Redskins"];
+
+  class NFL {
+    all = [];
+    weeks = [];
+    addTeam(team) {
+      this.all.push(team);
+      this[team.replace(/\s/g,'')] = {
+        name: team,
+        code: team.replace(/\s/g,''),
+      };
+    }
+    addWeek(week) {
+      this.weeks.push(week);
+    }
+  }
+
+  const ref = {
+    ArizonaCardinals: {name: "Arizona Cardinals", code: "ArizonaCardinals"},
+    AtlantaFalcons: {name: "Atlanta Falcons", code: "AtlantaFalcons"},
+    BaltimoreRavens: {name: "Baltimore Ravens", code: "BaltimoreRavens"},
+    BuffaloBills: {name: "Buffalo Bills", code: "BuffaloBills"},
+    CarolinaPanthers: {name: "Carolina Panthers", code: "CarolinaPanthers"},
+    ChicagoBears: {name: "Chicago Bears", code: "ChicagoBears"},
+    CincinnatiBengals: {name: "Cincinnati Bengals", code: "CincinnatiBengals"},
+    ClevelandBrowns: {name: "Cleveland Browns", code: "ClevelandBrowns"},
+    DallasCowboys: {name: "Dallas Cowboys", code: "DallasCowboys"},
+    DenverBroncos: {name: "Denver Broncos", code: "DenverBroncos"},
+    DetroitLions: {name: "Detroit Lions", code: "DetroitLions"},
+    GreenBayPackers: {name: "Green Bay Packers", code: "GreenBayPackers"},
+    HoustonTexans: {name: "Houston Texans", code: "HoustonTexans"},
+    IndianapolisColts: {name: "Indianapolis Colts", code: "IndianapolisColts"},
+    JacksonvilleJaguars: {name: "Jacksonville Jaguars", code: "JacksonvilleJaguars"},
+    KansasCityChiefs: {name: "Kansas City Chiefs", code: "KansasCityChiefs"},
+    LosAngelesChargers: {name: "Los Angeles Chargers", code: "LosAngelesChargers"},
+    LosAngelesRams: {name: "Los Angeles Rams", code: "LosAngelesRams"},
+    MiamiDolphins: {name: "Miami Dolphins", code: "MiamiDolphins"},
+    MinnesotaVikings: {name: "Minnesota Vikings", code: "MinnesotaVikings"},
+    NewEnglandPatriots: {name: "New England Patriots", code: "NewEnglandPatriots"},
+    NewOrleansSaints: {name: "New Orleans Saints", code: "NewOrleansSaints"},
+    NewYorkGiants: {name: "New York Giants", code: "NewYorkGiants"},
+    NewYorkJets: {name: "New York Jets", code: "NewYorkJets"},
+    OaklandRaiders: {name: "Oakland Raiders", code: "OaklandRaiders"},
+    PhiladelphiaEagles: {name: "Philadelphia Eagles", code: "PhiladelphiaEagles"},
+    PittsburghSteelers: {name: "Pittsburgh Steelers", code: "PittsburghSteelers"},
+    SanFrancisco49ers: {name: "San Francisco 49ers", code: "SanFrancisco49ers"},
+    SeattleSeahawks: {name: "Seattle Seahawks", code: "SeattleSeahawks"},
+    TampaBayBuccaneers: {name: "Tampa Bay Buccaneers", code: "TampaBayBuccaneers"},
+    TennesseeTitans: {name: "Tennessee Titans", code: "TennesseeTitans"},
+    WashingtonRedskins: {name: "Washington Redskins", code: "WashingtonRedskins"},
+  };
+
+
+
+
+  const nfl = new NFL();
+  teams.forEach( team => {
+    nfl.addTeam(team);
+  });
+  console.log(nfl);
+
+  //week1
+ nfl.addWeek(JSON.parse('[{"Packers":10,"Bears":3},{"Rams":30,"Panthers":27},{"Titans":43,"Browns":13},{"Chiefs":40,"Jaguars":26},{"Ravens":59,"Dolphins":10},{"Falcons":12,"Vikings":28},{"Bills":17,"Jets":16},{"Redskins":27,"Eagles":32},{"Colts":24,"Chargers":30},{"Bengals":20,"Seahawks":21},{"Lions":27,"Cardinals":27},{"Giants":17,"Cowboys":35},{"49ers":31,"Buccaneers":17},{"Steelers":3,"Patriots":33},{"Texans":28,"Saints":30},{"Broncos":16,"Raiders":24}]'));
+
+  //week2
+  nfl.addWeek(JSON.parse('[{"Buccaneers":20,"Panthers":14},{"Cardinals":17,"Ravens":23},{"49ers":41,"Bengals":17},{"Chargers":10,"Lions":13},{"Vikings":16,"Packers":21},{"Jaguars":12,"Texans":13},{"Patriots":43,"Dolphins":0},{"Bills":28,"Giants":14},{"Seahawks":28,"Steelers":26},{"Colts":19,"Titans":17},{"Cowboys":31,"Redskins":21},{"Chiefs":28,"Raiders":10},{"Bears":16,"Broncos":14},{"Saints":9,"Rams":27},{"Eagles":20,"Falcons":24},{"Browns":23,"Jets":3}]'));
+
+  //week3
+  nfl.addWeek(JSON.parse('[{"Titans":7,"Jaguars":20},{"Bengals":17,"Bills":21},{"Dolphins":6,"Cowboys":31},{"Broncos":16,"Packers":27},{"Falcons":24,"Colts":27},{"Ravens":28,"Chiefs":33},{"Raiders":14,"Vikings":34},{"Jets":14,"Patriots":30},{"Lions":27,"Eagles":24},{"Panthers":38,"Cardinals":20},{"Giants":32,"Buccaneers":31},{"Texans":27,"Chargers":20},{"Saints":33,"Seahawks":27},{"Steelers":20,"49ers":24},{"Rams":20,"Browns":13},{"Bears":31,"Redskins":15}]'));
+
+  //week4
+  nfl.addWeek(JSON.parse('[{"Eagles":34,"Packers":27},{"Titans":24,"Falcons":10},{"Browns":40,"Ravens":25},{"Patriots":16,"Bills":10},{"Chiefs":34,"Lions":30},{"Panthers":16,"Texans":10},{"Raiders":31,"Colts":24},{"Chargers":30,"Dolphins":10},{"Redskins":3,"Giants":24},{"Seahawks":27,"Cardinals":10},{"Buccaneers":55,"Rams":40},{"Vikings":6,"Bears":16},{"Jaguars":26,"Broncos":24},{"Cowboys":10,"Saints":12},{"Bengals":3,"Steelers":27}]'));
+
+  //week5
+  nfl.addWeek(JSON.parse('[{"Rams":29,"Seahawks":30},{"Jaguars":27,"Panthers":34},{"Cardinals":26,"Bengals":23},{"Falcons":32,"Texans":53},{"Buccaneers":24,"Saints":31},{"Vikings":28,"Giants":10},{"Bears":21,"Raiders":24},{"Jets":6,"Eagles":31},{"Ravens":26,"Steelers":23},{"Bills":14,"Titans":7},{"Patriots":33,"Redskins":7},{"Broncos":20,"Chargers":13},{"Packers":34,"Cowboys":24},{"Colts":19,"Chiefs":13},{"Browns":3,"49ers":31}]'));
+
+  //week6
+  nfl.addWeek(JSON.parse('[{"Lions":0,"Packers":0},{"Giants":14,"Patriots":35},{"Panthers":37,"Buccaneers":26},{"Bengals":17,"Ravens":23},{"Seahawks":32,"Browns":28},{"Saints":13,"Jaguars":6},{"Texans":31,"Chiefs":24},{"Redskins":17,"Dolphins":16},{"Eagles":20,"Vikings":38},{"Falcons":33,"Cardinals":34},{"49ers":20,"Rams":7},{"Titans":0,"Broncos":16},{"Cowboys":22,"Jets":24},{"Steelers":24,"Chargers":17}]'));
+
+  const Http = new XMLHttpRequest();
+  const url='https://jsonplaceholder.typicode.com/posts';
+  Http.open("GET", url);
+  Http.send();
+
+  Http.onreadystatechange = (e) => {
+    console.log(Http.responseText)
+  }
+
+</script>
+
+</body>
+</html>

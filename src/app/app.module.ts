@@ -14,6 +14,7 @@ import { Button3Component } from './buttons/button3/button3.component';
 import { Button4Component } from './buttons/button4/button4.component';
 import { Button5Component } from './buttons/button5/button5.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     Button2Component,
     Button3Component,
     Button4Component,
-    Button5Component
+    Button5Component,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
